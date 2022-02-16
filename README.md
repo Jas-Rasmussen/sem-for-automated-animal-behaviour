@@ -11,7 +11,7 @@
 5. [How to build a SEM?](#how-to-build-a-sem)
 6. [Methods for time decomposition](#methods-for-time-decomposition)
 7. [Methods to generate a buffered evaluation data](#methods-to-generate-a-buffered-evaluation-data)
-8. [Raw tracking datasets](#raw-tracking-datsaets)
+8. [Raw tracking datasets](#raw-tracking-datasets)
 
 ## Summary
 This repository shows how to develop structural equation models (SEM) using computer vision fish tracking data. We show how to translate raw movement data into ecological insight. 
