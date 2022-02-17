@@ -1,4 +1,4 @@
-# Structural Equation Models for Automated Animal Behaviour
+# Structural Equation Models for Automated Animal Behaviour Analyses
 [![Powered by](https://img.shields.io/badge/Powered%20by-FishID-green)](https://globalwetlandsproject.org/tools/fishid/)
 ![Status](https://img.shields.io/badge/Status-In%20Development-orange)
 [![Supported by](https://img.shields.io/badge/Supported%20by-AIForEarth-orange)](https://www.microsoft.com/en-us/ai/ai-for-earth)
