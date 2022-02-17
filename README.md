@@ -45,26 +45,27 @@ To access our raw tracking datasets please see
   - [Moses perch](https://www.dropbox.com/s/mzfrkvdfcv4kex6/dat_mose_final.csv?dl=0)
   - [Southern herring](https://www.dropbox.com/s/hov669jacfmtn65/dat_herr_final.csv?dl=0)
   - [Yellowfin bream](https://www.dropbox.com/s/81jo7iag7tgjqd8/dat_bream_final.csv?dl=0)
+
 These datasets have been curated, wrangled and post-processed and not represent the raw tracking outputs from FishID. 
 
 Each csv contains the following columns
-  - filename: a concatenated string that contains camera id, day, start time of recording, and site
-  - time: detection time in decimals
-  - species: common name of the species detected at a given time
-  - spatial_angle: movement angle in degrees
-  - tracker_id: tracker id 
-  - tracker_length: original length of tracker before any detection post-processing. Recommend not using this value. 
-  - detection_depth: y coordinate of the fish detection 
-  - detection_length: x coordinate of the fish detection
-  - spatial_dist: distance in pixel between detection 1 and detection 2 of tracker_id
-  - spatial_speed: value of detection speed in pixel by milisecond
-  - site: all data collected at Twin Waters, Queensland
-  - tide: tide value in m for every hour of data collection
-  - tide_type: ebb, flow, low, or high
-  - camera_location: location of camera in the fish passageways. Interpret as 'close' to the pipe entrance
-  - spatial_angle_simple: categorical variable of movement, either movement to the left, right, up or down. 
-  - sinuosity: numerical index of track curvature. a higher value means more curved. 
-  - distance_to_pipe: numerical variable to represent camera_location. Units - metres. 
+  - _filename_: a concatenated string that contains camera id, day, start time of recording, and site
+  - _time_: detection time in decimals
+  - _species_: common name of the species detected at a given time
+  - _spatial_angle_: movement angle in degrees
+  - _tracker_id_: tracker id 
+  - _tracker_length_: original length of tracker before any detection post-processing. Recommend not using this value. 
+  - _detection_depth_: y coordinate of the fish detection 
+  - _detection_length_: x coordinate of the fish detection
+  - _spatial_dist_: distance in pixel between detection 1 and detection 2 of tracker_id
+  - _spatial_speed_: value of detection speed in pixel by milisecond
+  - _site_: all data collected at Twin Waters, Queensland
+  - _tide_: tide value in m for every hour of data collection
+  - _tide_type_: ebb, flow, low, or high
+  - _camera_location_: location of camera in the fish passageways. Interpret as 'close' to the pipe entrance
+  - _spatial_angle_simple_: categorical variable of movement, either movement to the left, right, up or down. 
+  - _sinuosity_: numerical index of track curvature. a higher value means more curved. 
+  - _distance_to_pipe_: numerical variable to represent camera_location. Units - metres. 
   
   
   
