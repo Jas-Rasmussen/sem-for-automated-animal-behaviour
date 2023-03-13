@@ -1,72 +1,61 @@
-# Structural Equation Models for Automated Animal Behaviour Analyses
+# A framework to understand animal behaviour when using Artificial Intelligence data 
 [![Powered by](https://img.shields.io/badge/Powered%20by-FishID-green)](https://globalwetlandsproject.org/tools/fishid/)
-![Status](https://img.shields.io/badge/Status-In%20Development-orange)
+![Status](https://img.shields.io/badge/Status-Completed-green)
 [![Supported by](https://img.shields.io/badge/Supported%20by-AIForEarth-orange)](https://www.microsoft.com/en-us/ai/ai-for-earth)
 
 # Table of Contents
-1. [Summary](#summary)
+1. [Objectives](#objectives)
 2. [Dataset](#dataset)
-3. [Computer Vision Model](#computer-vision-model)
-4. [Behavioural Indicators](#behavioural-indicators)
-5. [How to build a SEM?](#how-to-build-a-sem)
-6. [Methods for time decomposition](#methods-for-time-decomposition)
-7. [Methods to generate a buffered evaluation data](#methods-to-generate-a-buffered-evaluation-data)
-8. [Raw tracking datasets](#raw-tracking-datasets)
+3. [Automated Processing of Videos](#automated-processing-of-videos)
+4. [Behavioural Framework](#behavioural-framework)
+5. [Cross-Validation Routine](#cross-validation-routine)
 
-## Summary
-This repository shows how to develop structural equation models (SEM) using computer vision fish tracking data. We show how to translate raw movement data into ecological insight. 
+## 📍Objectives
+ Movement studies provide essential ecological insights and aid in conservation efforts. Fine-scale movement data helps identify rare behaviors, usage of habitats, and importance of protected areas. Automated and remote techniques (such as Artificial Intelligence) enable the collection of fine-scale movement data from underwater imagery. However, translating raw movement data into ecologically relevant metrics remains a challenge.
 
-## Dataset
-90 hours of underwater were collected in a piped tidal weir in Australia. Raw videos can be provided upon request. 
+ In this repository, you will find a framework to classify fish behaviour and show how it can be used to predict behavioural events from large datasets. 
 
-## Computer Vision Model
-We used [FishID](https://globalwetlandsproject.org/tools-2__trashed/fishid/), a platform developed by Griffith University to automatically detect and track fish.
+### Behavioural events
+Behavioural events can be defined in several ways, but in this repo, an event is a behaviour that occurs in a short period and is measured when an animal is detected and tracked in the cameras's FOV. 
 
-## Behavioural Indicators
-From the computer vision model we extracted the following indicators
-  - spatial angle: movement angles in degrees.
-  - spatial speed: pixel/miliseconds between detection x and detection y.
-  - detection depth: y coordinate of a detection and an indicator of depth.
-  - sinuosity: numerical index that measures degress of undulation. Obtained from the [_trajr_](https://www.google.com/search?q=trajr&oq=trajr&aqs=chrome..69i57.1104j0j7&sourceid=chrome&ie=UTF-8) package in R. 
+## 📍Dataset
+90 hours of underwater videos were collected in [piped tidal weirs](https://www.fws.gov/story/anatomy-fish-weir#:~:text=Weirs%20help%20us%20to%20establish,and%20forecast%20future%20salmon%20returns) in southeast Queensland, Australia. Underwater cameras recorded all fish swimming across the weirs from 7AM to 4PM. Videos were recorded across three sites, over three sampling dates. 
 
-## How to build a SEM?
-We recommend reading this chapter on [latent variable modelling](https://jslefche.github.io/sem_book/latent-variable-modeling.html).
+## 📍Automated processing of videos
+[FishID](https://globalwetlandsproject.org/tools-2__trashed/fishid/), was used to automatically detect and track fish.
 
-## Methods for time decomposition
-We decomposed our linear time variable, see "time" on the reference dataset, to capture non-linear relationships between our latent behavioural state and time.For details see the time_decomposition.R
-
-In the time_decomposition.R script we show how to run a SEM for every time spline.
-
-## Methods to generate a buffered evaluation data
-In our cross-validation routine we randomly selected 50 tracks or blocks as an evaluation dataset. For every block we created a 30 min buffer. We predicted against each track or block in the evaluation dataset. For details on how to generate the buffered evaluation data see bufferred_leave_block_out.R
-
-## Raw tracking datasets
 To access our raw tracking datasets please see
   - [Moses perch](https://www.dropbox.com/s/mzfrkvdfcv4kex6/dat_mose_final.csv?dl=0)
   - [Southern herring](https://www.dropbox.com/s/hov669jacfmtn65/dat_herr_final.csv?dl=0)
   - [Yellowfin bream](https://www.dropbox.com/s/81jo7iag7tgjqd8/dat_bream_final.csv?dl=0)
-
 These datasets have been curated, wrangled and post-processed and not represent the raw tracking outputs from FishID. 
 
-Each csv contains the following columns
-  - _filename_: a concatenated string that contains camera id, day, start time of recording, and site
-  - _time_: detection time in decimals
-  - _species_: common name of the species detected at a given time
-  - _spatial_angle_: movement angle in degrees
-  - _tracker_id_: tracker id 
-  - _tracker_length_: original length of tracker before any detection post-processing. Recommend not using this value. 
-  - _detection_depth_: y coordinate of the fish detection 
-  - _detection_length_: x coordinate of the fish detection
-  - _spatial_dist_: distance in pixel between detection 1 and detection 2 of tracker_id
-  - _spatial_speed_: value of detection speed in pixel by milisecond
-  - _site_: all data collected at Twin Waters, Queensland
-  - _tide_: tide value in m for every hour of data collection
-  - _tide_type_: ebb, flow, low, or high
-  - _camera_location_: location of camera in the fish passageways. Interpret as 'close' to the pipe entrance
-  - _spatial_angle_simple_: categorical variable of movement, either movement to the left, right, up or down. 
-  - _sinuosity_: numerical index of track curvature. a higher value means more curved. 
-  - _distance_to_pipe_: numerical variable to represent camera_location. Units - metres. 
-  
+Please see [here]() to understand the structure of the datasets
+
+## 📍Behavioural framework
+The behavioural framework was built around structural equation models (SEM) because they can capture behavioural events that cannot be directly observed from observed data. Normally, underwater fish tracking data is noisy, complex and non-continous. 
+
+This framework was composed of three data types
+- sampling covariates
+- environmental covariates
+- behavioural indicators
+
+| Name | Type | Description | 
+| --- | --- | --- | 
+| Camera distance to pipe entrance | Sampling covariate | Numeric variable indicating proximity of the camera to the weir outlet | 
+| Tides and Time | Environmental covariates | Hourly tide values and time of detection across videos. See [Time decomposition]() |
+| Spatial angle | Behavioural indicators | Numeric variable that indicates the movement angles (degrees) between detection X and detection Y at any given video frames |
+| Spatial speed |Behavioural indicators | Numeric variable that indicates the movement speed in pixels per milliseconds of an individual between detection X and detection Y at any given video frames |
+| Detection depth | Behavioural indicators | Detection height (y coordinate) as an indicator of depth of the detection. Lower detection height means a detection near the surface whereas a higher detection height means a detection closer to the seafloor |
+| Sinuosity | Behavioural indicators | Numerical index that measures the degrees of undulations in a track. Higher sinuosity values mean that there are more undulations in an individual track. |
+
+To read more about the theory of SEMs please see [latent variable modelling](https://jslefche.github.io/sem_book/latent-variable-modeling.html). 
+
+
+## 📍Cross-validation routine
+In our cross-validation routine we randomly selected 50 tracks or blocks as an evaluation dataset. For every block we created a 30 min buffer. We predicted against each track or block in the evaluation dataset. For details on how to generate the buffered evaluation data see [cross_validation]()
+
+
   
   
   
