@@ -30,7 +30,7 @@ To access our raw tracking datasets please see
   - [Yellowfin bream](https://www.dropbox.com/s/81jo7iag7tgjqd8/dat_bream_final.csv?dl=0)
 These datasets have been curated, wrangled and post-processed and not represent the raw tracking outputs from FishID. 
 
-Please see [here](https://github.com/slopezmarcano/sem-for-automated-animal-behaviour/blob/e3d80300a773038776c444a20364a56dabfef40d/data/README.md#L8) to understand the structure of the datasets
+Please see [here](https://github.com/slopezmarcano/sem-for-automated-animal-behaviour/blob/main/data/README.md) to understand the structure of the datasets
 
 ## 📍Behavioural framework
 The behavioural framework was built around structural equation models (SEM) because they can capture behavioural events that cannot be directly observed from observed data. Normally, underwater fish tracking data is noisy, complex and non-continous. 
@@ -43,7 +43,7 @@ This framework was composed of three data types
 | Name | Type | Description | 
 | --- | --- | --- | 
 | Camera distance to pipe entrance | Sampling covariate | Numeric variable indicating proximity of the camera to the weir outlet | 
-| Tides and Time | Environmental covariates | Hourly tide values and time of detection across videos. See [Time decomposition](https://github.com/slopezmarcano/sem-for-automated-animal-behaviour/blob/e3d80300a773038776c444a20364a56dabfef40d/time_decomposition) |
+| Tides and Time | Environmental covariates | Hourly tide values and time of detection across videos. See [Time decomposition](https://github.com/slopezmarcano/sem-for-automated-animal-behaviour/tree/main/time_decomposition) |
 | Spatial angle | Behavioural indicators | Numeric variable that indicates the movement angles (degrees) between detection X and detection Y at any given video frames |
 | Spatial speed |Behavioural indicators | Numeric variable that indicates the movement speed in pixels per milliseconds of an individual between detection X and detection Y at any given video frames |
 | Detection depth | Behavioural indicators | Detection height (y coordinate) as an indicator of depth of the detection. Lower detection height means a detection near the surface whereas a higher detection height means a detection closer to the seafloor |
@@ -53,7 +53,7 @@ To read more about the theory of SEMs please see [latent variable modelling](htt
 
 
 ## 📍Cross-validation routine
-In our cross-validation routine we randomly selected 50 tracks or blocks as an evaluation dataset. For every block we created a 30 min buffer. We predicted against each track or block in the evaluation dataset. For details on how to generate the buffered evaluation data see [cross_validation](https://github.com/slopezmarcano/sem-for-automated-animal-behaviour/blob/e3d80300a773038776c444a20364a56dabfef40d/cross_validation)
+In our cross-validation routine we randomly selected 50 tracks or blocks as an evaluation dataset. For every block we created a 30 min buffer. We predicted against each track or block in the evaluation dataset. For details on how to generate the buffered evaluation data see [cross_validation](https://github.com/slopezmarcano/sem-for-automated-animal-behaviour/tree/main/cross_validations)
 
 
   
