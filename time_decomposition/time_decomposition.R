@@ -33,13 +33,15 @@ buff_mose<-read.csv('https://www.dropbox.com/s/p138pj5xg9aksc4/1min_buffered_mos
 #Step 3: Specify the SEM 
 #We specify the model without the time splines, ensure that trait ~... is the last term as the splines will be pasted at the end
 
+#these variables were assessed prior to look at if they need to be scaled, mean centred, etc
 mod<- "
   trait1 =~ spatial_angle + spatial_speed + detection_depth + sinuosity
   trait1 ~ tide+distance_to_pipe"
 
 # Step 4: Define the degrees of freedom for the spline
 #We used >3 but <9 as some models were not identified outside this range
-splines_ndf <- expand.grid(ndf = c(3,4,5,6,7,8,9))
+#created 9 different curves (splines) to define time v behaviour relationship
+splines_ndf <- expand.grid(ndf = c(3,4,5,6,7,8,9)) #sem model ran for all of these curves
 
 
 # Step 5: Develop a function that runs an SEM model for every spline ndf
@@ -64,7 +66,7 @@ fit_spline_sem_short <- function(dat, ndf, var, model){
   # modify model formula to include splines 
   mod_cs <- paste(model, paste0(rep("+splineX", ndf), 
                                 1:ndf, collapse = " "))
-  #Fit the SEM
+ #Fit the SEM
   mod_fit <- sem(mod_cs, data = dat2, 
                  sample.cov = dat_cov)
   #Generate summary
